@@ -5,13 +5,14 @@ window.onload = function() {
 	const popup = document.querySelector('.popup');
 	const popup_close = document.querySelector('.popup_close');
 
+
+	popup_engineer.addEventListener('click', function(){hide_form(this, popup_close)});
+	popup.addEventListener('click', function(){hide_form(this, popup_close)});
+
+
 	header_btn.addEventListener('click', function(){
 		popup_engineer.style.display = 'block';
-		popup_engineer.addEventListener('click', function(){hide_form(this)});
 	});
-//	for (let i = 0; i < phone_link.length; i++) {
-//		phone_link[i].addEventListener('click', show_form);
-//	}
 	
 	for (let i = 0; i < phone_link.length; i++) {
 		phone_link[i].addEventListener('click', function() {
@@ -20,10 +21,13 @@ window.onload = function() {
 	}
 };
 
-function hide_form(area) {
+function hide_form(area, popup_close) {
 	let target = event.target;
-//	let target_hide = target.closest('button').className;
-	if (target.className == area.className) {
+	let target_hide = null;
+	if (target.closest('button')){
+		target_hide = target.closest('button').className;
+	}
+	if ((target.className == area.className) || (target_hide == popup_close.className)) {
 		area.style.display = 'none';
-	};
+	}
 }
